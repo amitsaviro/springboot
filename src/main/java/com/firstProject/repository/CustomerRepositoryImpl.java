@@ -65,7 +65,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public List<Customer> getAllCustomersByFirstName(String firstName) {
-        String sql = "SELECT * FROM " + CUSTOMER_TABLE_NAME + " WHERE first_name = ?";
+        String sql = "SELECT * FROM " + CUSTOMER_TABLE_NAME + " WHERE first_name LIKE %?%";
         try {
             return jdbcTemplate.query(sql, customerMapper, firstName);
         } catch (EmptyResultDataAccessException e) {
@@ -76,9 +76,10 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public List<Long> getAllCustomerIdsByFirstName(String firstName) {
-        String sql = "SELECT c.id FROM " + CUSTOMER_TABLE_NAME + " AS c WHERE first_name = ?";
+        System.out.println(firstName);
+        String sql = "SELECT c.id FROM " + CUSTOMER_TABLE_NAME + " AS c WHERE c.first_name LIKE '%" + firstName + "%'";
         try {
-           return jdbcTemplate.queryForList(sql, Long.class, firstName);
+           return jdbcTemplate.queryForList(sql, Long.class);
         } catch (EmptyResultDataAccessException e) {
             System.out.println("Empty Data Warning");
             return null;

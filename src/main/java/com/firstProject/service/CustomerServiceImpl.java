@@ -1,5 +1,7 @@
 package com.firstProject.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firstProject.model.Customer;
 import com.firstProject.model.CustomerStatus;
 import com.firstProject.repository.CustomerRepository;
@@ -8,14 +10,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.firstProject.service.ConstVariables.ALLOWED_VIP_CUSTOMERS_AMOUNT;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Override
-    public void createCustomer(Customer customer) {
+    public void createCustomer(Customer customer) throws JsonProcessingException {
+        String customerString = objectMapper.writeValueAsString(customer);
+        System.out.println("Got request to create new customer with details " + customerString);
         if(customer.getCustomerStatus() == CustomerStatus.VIP){
             if(allowVip()){
                 customerRepository.createCustomer(customer);
@@ -62,6 +71,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     private boolean allowVip(){
         List<Customer> vipCustomers = customerRepository.getAllCustomersByStatus(CustomerStatus.VIP);
-        return (vipCustomers.size() < 5);
+        return (vipCustomers.size() < ALLOWED_VIP_CUSTOMERS_AMOUNT);
     }
 }

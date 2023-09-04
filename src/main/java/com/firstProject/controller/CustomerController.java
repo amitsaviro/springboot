@@ -1,7 +1,7 @@
 package com.firstProject.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.firstProject.model.Customer;
-import com.firstProject.repository.CustomerRepository;
 import com.firstProject.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping("/create")
-    public void createCustomer(@RequestBody Customer customer){
+    public void createCustomer(@RequestBody Customer customer) throws JsonProcessingException {
         customerService.createCustomer(customer);
     }
 
