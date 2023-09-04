@@ -18,13 +18,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+
 
     @Override
     public void createCustomer(Customer customer) throws JsonProcessingException {
-        String customerString = objectMapper.writeValueAsString(customer);
-        System.out.println("Got request to create new customer with details " + customerString);
         if(customer.getCustomerStatus() == CustomerStatus.VIP){
             if(allowVip()){
                 customerRepository.createCustomer(customer);
