@@ -15,7 +15,7 @@ CREATE TABLE customer_order (
     customer_id int(11) NOT NULL,
     item_name varchar(300) NOT NULL DEFAULT '',
     price int(11) NOT NULL DEFAULT '',
-    currency varchar(300) NOT NULL DEFAULT 'USD',
     PRIMARY KEY (id),
     FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
+

@@ -7,6 +7,8 @@ public class Customer {
     private String email;
     private CustomerStatus customerStatus;
 
+    public Customer(){}
+
     public Customer(Long id, String firstName, String lastName, String email, CustomerStatus customerStatus) {
         this.id = id;
         this.firstName = firstName;
