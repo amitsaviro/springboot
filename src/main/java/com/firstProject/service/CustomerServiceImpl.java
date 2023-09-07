@@ -1,7 +1,6 @@
 package com.firstProject.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firstProject.model.Customer;
 import com.firstProject.model.CustomerStatus;
 import com.firstProject.repository.CustomerRepository;
@@ -18,18 +17,17 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-
-
     @Override
-    public void createCustomer(Customer customer) throws JsonProcessingException {
+    public Long createCustomer(Customer customer) throws JsonProcessingException {
         if(customer.getCustomerStatus() == CustomerStatus.VIP){
             if(allowVip()){
-                customerRepository.createCustomer(customer);
+                return customerRepository.createCustomer(customer);
             } else {
                 System.out.println("Could not create new VIP customer, out of limit");
+                return null;
             }
         } else {
-            customerRepository.createCustomer(customer);
+            return customerRepository.createCustomer(customer);
         }
     }
 

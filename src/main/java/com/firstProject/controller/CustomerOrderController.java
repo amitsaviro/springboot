@@ -1,5 +1,6 @@
 package com.firstProject.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.firstProject.model.CustomerOrder;
 import com.firstProject.model.CustomerOrderRequest;
 import com.firstProject.model.CustomerOrderResponse;
@@ -16,9 +17,8 @@ public class CustomerOrderController {
     private CustomerOrderService customerOrderService;
 
     @PostMapping("/create")
-    public CustomerOrderResponse createCustomerOrder(@RequestBody CustomerOrderRequest customerOrderRequest) {
-        customerOrderService.createCustomerOrder(customerOrderRequest);
-        return null;
+    public CustomerOrderResponse createCustomerOrder(@RequestBody CustomerOrderRequest customerOrderRequest) throws JsonProcessingException {
+        return customerOrderService.createCustomerOrder(customerOrderRequest);
     }
 
     @PutMapping("/update")

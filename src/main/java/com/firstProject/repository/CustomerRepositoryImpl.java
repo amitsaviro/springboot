@@ -22,7 +22,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     private CustomerMapper customerMapper;
 
     @Override
-    public void createCustomer(Customer customer) {
+    public Long createCustomer(Customer customer) {
         String sql = "INSERT INTO " + CUSTOMER_TABLE_NAME + " " + "(first_name, last_name, email, status) values (?, ?, ?, ?)";
         jdbcTemplate.update(
                 sql,
@@ -31,6 +31,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
                 customer.getEmail(),
                 customer.getCustomerStatus().name()
         );
+        return jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID();", Long.class);
     }
 
     @Override
