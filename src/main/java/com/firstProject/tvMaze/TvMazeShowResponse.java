@@ -1,39 +1,44 @@
 package com.firstProject.tvMaze;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class TvMazeShowResponse {
-    private Long id;
-    private String url;
-    private String name;
+    @JsonProperty("id")
+    private Long mazeShowId;
+    @JsonProperty("url")
+    private String mazeShowUrl;
+    @JsonProperty("name")
+    private String mazeShowName;
 
     public TvMazeShowResponse(){}
 
-    public TvMazeShowResponse(Long id, String url, String name) {
-        this.id = id;
-        this.url = url;
-        this.name = name;
+    public TvMazeShowResponse(Long mazeShowId, String mazeShowUrl, String mazeShowName) {
+        this.mazeShowId = mazeShowId;
+        this.mazeShowUrl = mazeShowUrl;
+        this.mazeShowName = mazeShowName;
     }
 
-    public Long getId() {
-        return id;
+    public Long getMazeShowId() {
+        return mazeShowId;
     }
 
-    public String getUrl() {
-        return url;
+    public String getMazeShowUrl() {
+        return mazeShowUrl;
     }
 
-    public String getName() {
-        return name;
+    public String getMazeShowName() {
+        return mazeShowName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMazeShowId(Long mazeShowId) {
+        this.mazeShowId = mazeShowId;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setMazeShowUrl(String mazeShowUrl) {
+        this.mazeShowUrl = mazeShowUrl;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMazeShowName(String mazeShowName) {
+        this.mazeShowName = mazeShowName;
     }
 }

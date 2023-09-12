@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  redis:
+    container_name: "redis_docker"
+    image: redis:alpine
+    ports:
+      - "6380:6379"
+
