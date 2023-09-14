@@ -31,7 +31,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerId}")
-    public Customer getCustomerById(@PathVariable Long customerId){
+    public Customer getCustomerById(@PathVariable Long customerId) throws JsonProcessingException {
         return customerService.getCustomerById(customerId);
     }
 

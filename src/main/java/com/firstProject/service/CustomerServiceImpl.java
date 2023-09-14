@@ -46,11 +46,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomerById(Long id) {
-        deleteCustomerById(id);
+        customerRepository.deleteCustomerById(id);
     }
 
     @Override
-    public Customer getCustomerById(Long id) {
+    public Customer getCustomerById(Long id) throws JsonProcessingException {
         return customerRepository.getCustomerById(id);
     }
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import redis.clients.jedis.JedisPooled;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class CustomerOrderRepositoryImpl implements CustomerOrderRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private JedisPooled jedisPooled;
 
     @Override
     public void createCustomerOrder(CustomerOrder customerOrder) {
